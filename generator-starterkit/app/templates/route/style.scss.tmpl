@@ -1,0 +1,97 @@
+// Core variables and mixins
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/fonts.scss";
+@import "../home/Home.scss";
+
+.hotel-page{
+  .content-title {
+    display: block;
+
+    .heading, .side-heading {
+      font-family: $persian-bold;
+      display: inline-block;
+      color: $blue;
+      margin-top: 35px;
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+
+  }
+
+  .tab-box {
+    .content-title {
+      font-family: IRANSans-bold,Tahoma,sans-serif;
+      font-size: 18px;
+      margin: 10px 0;
+      display: inline-block;
+      color: #03273f;
+    }
+  }
+
+  .btn-arrow{
+    display: inline-block;
+    position: absolute;
+    background-color: $amber;
+    text-align: center;
+    left: 15px;
+    bottom: 15px;
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+    //box-shadow: -1px 2px 3px rgba(0,0,0,0.19);
+    img{
+      background: url("/image/arrow-left-white.svg");
+      padding: 11px;
+      background-position: center center !important;
+      position: relative !important;
+      bottom: -7px !important;
+      background-size: 25px;
+      background-repeat: no-repeat;
+    }
+  }
+  .tab-box {
+    .text-tab{
+      h1{
+        font-size: 14px;
+        display: inline-block;
+        padding: 20px 0;
+      }
+    }
+  }
+  .zoraq-service{
+    .side-heading {
+      font-size: 18px;
+    }
+    p{
+      letter-spacing: -.4px !important;
+    }
+  }
+  .price-info{
+    font-size: 16px;
+    margin: 25px;
+  }
+  .description-hotel {
+    font-size: 12px;
+    font-weight: normal !important;
+    line-height: 20px;
+    margin-bottom: 35px;
+    text-align: justify;
+    color: #585858;
+  }
+  .hotel-price-box {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media all and (max-width: 750px) {
+  .tab-box {
+    .text-tab{
+      h2{
+        font-size: 12px;
+      }
+    }
+  }
+}
