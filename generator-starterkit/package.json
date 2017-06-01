@@ -12,7 +12,9 @@
   },
   "author": "",
   "license": "ISC",
-  "keywords": ["yeoman-generator"],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "dependencies": {
     "yeoman-generator": "^0.24.1"
   }
