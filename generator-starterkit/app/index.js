@@ -48,7 +48,7 @@ module.exports = generators.Base.extend({
         }
       );
       this.fs.copyTpl(
-        this.templatePath('component/style.scss.tmpl'),
+        this.templatePath('component/style.css.tmpl'),
         this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.scss'),
         {
           componentName: answer.componentName,
