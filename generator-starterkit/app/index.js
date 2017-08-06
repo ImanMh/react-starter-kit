@@ -49,7 +49,7 @@ module.exports = generators.Base.extend({
       );
       this.fs.copyTpl(
         this.templatePath('component/style.css.tmpl'),
-        this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.scss'),
+        this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.css'),
         {
           componentName: answer.componentName,
           dashedName: _this._camelCaseToDashSeperated(answer.componentName)
@@ -82,8 +82,8 @@ module.exports = generators.Base.extend({
         { routeName: answer.routeName }
       );
       this.fs.copyTpl(
-        this.templatePath('rout/style.scss.tmpl'),
-        this.destinationPath('src/routs/' + answer.routeName + '/' + answer.routeName + '.scss'),
+        this.templatePath('rout/style.css.tmpl'),
+        this.destinationPath('src/routs/' + answer.routeName + '/' + answer.routeName + '.css'),
         { routeName: answer.routName }
       );
       this.log('route', answer.route, ' is created.')
