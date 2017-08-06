@@ -1,0 +1,24 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './<%= routeName %>';
+
+class <%= routeName %> extends React.Component {
+  static propTypes = {};
+
+
+  render() {
+    const {} = this.props;
+    return (
+    <% if (routeName.toLowerCase() === dashedName) { %>
+      <div className={s.<%=dashedName%>} >
+    <% } else { %>
+      <div className={s['<%=dashedName%>']} >
+    <% } %>
+        <p>Not Implemented</p>
+      </div>
+    );
+  }
+}
+
+export default withStyles(s)(Home);

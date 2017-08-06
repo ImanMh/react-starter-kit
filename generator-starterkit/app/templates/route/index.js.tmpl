@@ -2,25 +2,22 @@ import React from 'react';
 import <%= routeName %> from './<%= routeName %>';
 import Layout from '../../components/Layout';
 
-const <%= routeName %>Action = async function (context) {
-  return {
-    title: '',
-    component: <Layout><Hotel {...context} /></Layout>,
-  };
-};
+export default {
 
-export default [{
-  //simple route
   path: '/',
-  action: <%= routeName %>Action,
-}, {
-  //async route
-  path: '/',
-  async action(context) {
-    return <%= routeName %>Action({
-      ...context,
-      params: {
-      },
+
+  async action({ fetch }) {
+    const resp = await fetch('/graphql', {
+      body: JSON.stringify({
+        query: '{news{title,link,content}}',
+      }),
     });
+    const { data } = await resp.json();
+    if (!data || !data.news) throw new Error('Failed to load the news feed.');
+    return {
+      title: '<%= routeName %> Title',
+      component: <Layout><<%= routeName %> news={data.news} /></Layout>,
+    };
   },
-}];
+
+};

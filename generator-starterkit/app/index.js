@@ -100,6 +100,7 @@ module.exports = generators.Base.extend({
   },
 
   _makeNewRoute: function () {
+    var _this = this;
     return this.prompt([{
       type    : 'input',
       name    : 'routeName',
@@ -108,17 +109,26 @@ module.exports = generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('./route/index.js.tmpl'),
         this.destinationPath('src/routes/' + answer.routeName + '/index.js'),
-        { routeName: answer.routeName }
+        {
+          routeName: answer.routeName,
+          dashedName: _this._camelCaseToDashSeperated(answer.routeName)
+        }
       );
       this.fs.copyTpl(
-        this.templatePath('./route/routeComponent.js.tmpl'),
-        this.destinationPath('src/routs/' + answer.routeName + '/' + answer.routeName + '.js'),
-        { routeName: answer.routeName }
+        this.templatePath('./route/basic.js.tmpl'),
+        this.destinationPath('src/routes/' + answer.routeName + '/' + answer.routeName + '.js'),
+        {
+          routeName: answer.routeName,
+          dashedName: _this._camelCaseToDashSeperated(answer.routeName)
+        }
       );
       this.fs.copyTpl(
-        this.templatePath('rout/style.css.tmpl'),
-        this.destinationPath('src/routs/' + answer.routeName + '/' + answer.routeName + '.css'),
-        { routeName: answer.routName }
+        this.templatePath('./route/style.css.tmpl'),
+        this.destinationPath('src/routes/' + answer.routeName + '/' + answer.routeName + '.css'),
+        {
+          routeName: answer.routeName,
+          dashedName: _this._camelCaseToDashSeperated(answer.routeName)
+        }
       );
       this.log('route', answer.route, ' is created.')
     }.bind(this));
