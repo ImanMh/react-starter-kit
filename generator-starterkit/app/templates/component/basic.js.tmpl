@@ -14,7 +14,11 @@ class <%= componentName %> extends React.Component {
   render() {
     const {} = this.props;
     return (
-      <div className="<%= dashedName %>" >
+    <% if (componentName.toLowerCase() === dashedName) { %>
+      <div className={s.<%=dashedName%>} >
+    <% } else { %>
+      <div className={s['<%=dashedName%>']} >
+    <% } %>
         <p>Not Implemented</p>
       </div>
     );
