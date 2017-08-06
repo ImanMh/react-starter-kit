@@ -1,0 +1,19 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import s from './<%= componentName %>.css';
+
+
+const HelloWorld<%= componentName %> = ({name}) => (
+  <% if (componentName.toLowerCase() === dashedName) { %>
+    <div className={s.<%=dashedName%>}>Not Implemented</div>
+  <% } else { %>
+    <div className={s['<%=dashedName%>']}>Not Implemented</div>
+  <% } %>
+);
+
+<%= componentName %>.propTypes = {}
+
+<%= componentName %>.defaultProps = {}
+
+export default withStyles(s)(<%= componentName %>);

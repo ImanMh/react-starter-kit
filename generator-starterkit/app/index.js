@@ -11,7 +11,7 @@ module.exports = generators.Base.extend({
       type: 'list',
       name: 'type',
       message: 'What type of file do you want to create?',
-      choices: [ 'component', 'route' ]
+      choices: [ 'component', 'state less component', 'route' ]
     }];
 
     var _this = this;
@@ -20,6 +20,9 @@ module.exports = generators.Base.extend({
       .then(function (ans) {
         if (ans.type === 'component') {
           _this._makeNewComponent();
+        }
+        if (ans.type === 'state less component') {
+          _this._makeNewStateLessComponent();
         }
         if (ans.type === 'route') {
           _this._makeNewRoute();
@@ -48,7 +51,7 @@ module.exports = generators.Base.extend({
         }
       );
       this.fs.copyTpl(
-        this.templatePath('component/style.css.tmpl'),
+        this.templatePath('./component/style.css.tmpl'),
         this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.css'),
         {
           componentName: answer.componentName,
@@ -56,7 +59,39 @@ module.exports = generators.Base.extend({
         }
       );
       this.fs.copyTpl(
-        this.templatePath('component/package.json.tmpl'),
+        this.templatePath('./component/package.json.tmpl'),
+        this.destinationPath('src/components/' + answer.componentName + '/package.json'),
+        { componentName: answer.componentName }
+      );
+      this.log('component ', answer.componentName, ' is created.')
+    }.bind(this));
+  },
+
+  _makeNewStateLessComponent: function () {
+    var _this = this;
+    return this.prompt([{
+      type    : 'input',
+      name    : 'componentName',
+      message : 'What\'s the component name?'
+    }]).then(function (answer) {
+      this.fs.copyTpl(
+        this.templatePath('./state-less-component/basic.js.tmpl'),
+        this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.js'),
+        { 
+          componentName: answer.componentName,
+          dashedName: _this._camelCaseToDashSeperated(answer.componentName)
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('./state-less-component/style.css.tmpl'),
+        this.destinationPath('src/components/' + answer.componentName + '/' + answer.componentName + '.css'),
+        {
+          componentName: answer.componentName,
+          dashedName: _this._camelCaseToDashSeperated(answer.componentName)
+        }
+      );
+      this.fs.copyTpl(
+        this.templatePath('./state-less-component/package.json.tmpl'),
         this.destinationPath('src/components/' + answer.componentName + '/package.json'),
         { componentName: answer.componentName }
       );
@@ -70,7 +105,6 @@ module.exports = generators.Base.extend({
       name    : 'routeName',
       message : 'What\'s the route name?'
     }]).then(function (answer) {
-      console.log({ routeName: answer.routeName });
       this.fs.copyTpl(
         this.templatePath('./route/index.js.tmpl'),
         this.destinationPath('src/routes/' + answer.routeName + '/index.js'),
